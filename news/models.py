@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class category(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -13,7 +13,7 @@ class category(models.Model):
 class News(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    category = models.ForeignKey(category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category, related_name='news')
     source = models.URLField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
